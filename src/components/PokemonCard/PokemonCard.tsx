@@ -14,11 +14,9 @@ export function PokemonCard(props: PokemonCardProps) {
       <div className={classes.pokemonName}>
         #{props.number.toString().padStart(4, "0")} {props.name}
       </div>
-      <img
-        src={props.image}
-        alt={props.name}
-        className={classes.pokemonImage}
-      />
+      <div className={classes.pokemonImageWrapper}>
+        <img src={props.image} alt={props.name} />
+      </div>
       <div className={classes.pokemonTypes}>
         {props.types.map((type) => (
           <div
