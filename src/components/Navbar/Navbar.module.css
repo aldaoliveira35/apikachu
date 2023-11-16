@@ -3,11 +3,7 @@
   height: 80px;
   padding: 10px;
   width: 100%;
-  border-bottom: 10px solid #222222;
+  border-bottom: 20px solid #222222;
   display: flex;
   justify-content: space-between;
-}
-
-.pokeball {
-  height: 20px;
 }
