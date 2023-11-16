@@ -1,0 +1,13 @@
+.navbar {
+  background-color: #f35050;
+  height: 80px;
+  padding: 10px;
+  width: 100%;
+  border-bottom: 10px solid #222222;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pokeball {
+  height: 20px;
+}

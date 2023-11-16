@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getPokemons } from "../api-clients/pokemon-api-client";
 
@@ -10,6 +10,7 @@ interface PokemonsResponse {
 }
 
 interface Pokemon {
+  id: number;
   name: string;
   sprites: {
     front_default: string;
@@ -17,18 +18,29 @@ interface Pokemon {
 }
 
 export function usePokemon() {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["pokemons"],
-    queryFn: async ({ signal }) => {
-      const { results }: PokemonsResponse = await getPokemons(signal);
+    queryFn: async ({ signal, pageParam }) => {
+      const pageSize = 30;
+
+      const { results }: PokemonsResponse = await getPokemons(
+        signal,
+        pageSize,
+        pageSize * pageParam
+      );
 
       const pokemonsDetails: Pokemon[] = await Promise.all(
         results.map((pokemon) => {
-          return fetch(pokemon.url).then((response) => response.json());
+          return fetch(pokemon.url, { signal }).then((response) =>
+            response.json()
+          );
         })
       );
 
       return pokemonsDetails;
     },
+    staleTime: Infinity,
+    initialPageParam: 0,
+    getNextPageParam: (_lastPage, pages) => pages.length,
   });
 }

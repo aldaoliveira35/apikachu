@@ -8,9 +8,14 @@ export function getPokemon(signal: AbortSignal) {
   return request(`pokemon?${searchParams.toString()}`, signal);
 }
 
-export function getPokemons(signal: AbortSignal) {
+export function getPokemons(
+  signal: AbortSignal,
+  limit: number,
+  offset: number
+) {
   const searchParams = new URLSearchParams({
-    limit: "30",
+    limit: limit.toString(),
+    offset: offset.toString(),
   });
 
   return request(`pokemon?${searchParams.toString()}`, signal);
