@@ -1,10 +1,10 @@
-import classes from "./pokedex.module.css";
+import classes from "./pokemons.module.css";
 
 import { usePokemons } from "../../queries/usePokemons";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 import { PokemonCard } from "../../components/PokemonCard/PokemonCard";
 
-export function Pokedex() {
+export function PokemonsPage() {
   const { data, isLoading, fetchNextPage } = usePokemons();
 
   return (
@@ -13,13 +13,7 @@ export function Pokedex() {
         <>
           <div className={classes.pokedexGrid}>
             {data.pages.flat().map((pokemon) => (
-              <PokemonCard
-                key={pokemon.name}
-                name={pokemon.name}
-                image={pokemon.sprites.other["official-artwork"].front_default}
-                types={pokemon.types.map(({ type }) => type.name)}
-                number={pokemon.id}
-              />
+              <PokemonCard key={pokemon.name} pokemon={pokemon} />
             ))}
           </div>
           <button

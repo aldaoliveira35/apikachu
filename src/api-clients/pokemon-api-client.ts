@@ -1,13 +1,5 @@
 const API_BASE_URL = "https://pokeapi.co/api/v2";
 
-export function getPokemon(signal: AbortSignal) {
-  const searchParams = new URLSearchParams({
-    limit: "30",
-  });
-
-  return request(`pokemon?${searchParams.toString()}`, signal);
-}
-
 export function getPokemons(
   signal: AbortSignal,
   limit: number,
@@ -19,6 +11,10 @@ export function getPokemons(
   });
 
   return request(`pokemon?${searchParams.toString()}`, signal);
+}
+
+export function getPokemonDetails(signal: AbortSignal, id: string) {
+  return request(`pokemon/${id}`, signal);
 }
 
 async function request(endpointUrl: string, signal: AbortSignal) {

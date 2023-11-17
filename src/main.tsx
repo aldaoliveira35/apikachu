@@ -4,8 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Navbar } from "./components/Navbar/Navbar";
-import { Pokedex } from "./pages/pokedex/pokedex";
-import { Homepage } from "./pages/homepage/homepage";
+import { HomePage } from "./pages/homepage/homepage";
+import { PokemonsPage } from "./pages/pokemons/pokemons";
+import { PokemonDetailsPage } from "./pages/pokemon-details/pokemon-details";
 
 import "./styles/reset.css";
 import "./styles/global.css";
@@ -19,16 +20,17 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Navbar />
         <div
           style={{
-            padding: 2,
+            padding: "25px",
             display: "flex",
             flexDirection: "column",
             height: "calc(100% - 80px)",
-            overflow: "scroll",
+            overflowY: "auto",
           }}
         >
           <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/pokedex" element={<Pokedex />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/pokemons" element={<PokemonsPage />} />
+            <Route path="/pokemons/:id" element={<PokemonDetailsPage />} />
           </Routes>
         </div>
       </BrowserRouter>

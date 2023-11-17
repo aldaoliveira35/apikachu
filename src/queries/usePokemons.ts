@@ -1,46 +1,21 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getPokemons } from "../api-clients/pokemon-api-client";
-
-interface PokemonsResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: Array<{ name: string; url: string }>;
-}
-
-interface Pokemon {
-  id: number;
-  name: string;
-  sprites: {
-    other: {
-      "official-artwork": {
-        front_default: string;
-      };
-    };
-  };
-  types: Array<{
-    slot: number;
-    type: {
-      name: string;
-      url: string;
-    };
-  }>;
-}
+import { Pokemon, PokemonDetailsResponse, PokemonsListResponse } from "./types";
 
 export function usePokemons() {
   return useInfiniteQuery({
     queryKey: ["pokemons"],
     queryFn: async ({ signal, pageParam }) => {
-      const pageSize = 30;
+      const pageSize = 20;
 
-      const { results }: PokemonsResponse = await getPokemons(
+      const { results }: PokemonsListResponse = await getPokemons(
         signal,
         pageSize,
         pageSize * pageParam
       );
 
-      const pokemonsDetails: Pokemon[] = await Promise.all(
+      const pokemonsDetails: PokemonDetailsResponse[] = await Promise.all(
         results.map((pokemon) => {
           return fetch(pokemon.url, { signal }).then((response) =>
             response.json()
@@ -48,7 +23,19 @@ export function usePokemons() {
         })
       );
 
-      return pokemonsDetails;
+      return pokemonsDetails.map<Pokemon>((pokemon) => ({
+        id: pokemon.id,
+        name: pokemon.name,
+        height: pokemon.height,
+        weight: pokemon.weight,
+        image: pokemon.sprites.other["official-artwork"].front_default,
+        types: pokemon.types.map(({ type }) => type.name),
+        abilities: pokemon.abilities.map(({ ability }) => ability.name),
+        stats: pokemon.stats.map(({ stat, base_stat }) => ({
+          name: stat.name,
+          value: base_stat,
+        })),
+      }));
     },
     staleTime: Infinity,
     initialPageParam: 0,
