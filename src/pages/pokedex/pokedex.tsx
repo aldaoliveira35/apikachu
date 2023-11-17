@@ -23,10 +23,10 @@ export function Pokedex() {
             ))}
           </div>
           <button
+            className={classes.fetchMoreButton}
             onClick={() => fetchNextPage()}
-            style={{ backgroundColor: "red", width: "fit-content" }}
           >
-            Fetch more Pokemon
+            Fetch more Pokémon
           </button>
         </>
       )}
@@ -34,7 +34,7 @@ export function Pokedex() {
       {isLoading && (
         <div className={classes.loadingIconWrapper}>
           <LoadingIcon />
-          Loading Pokemon...
+          Loading Pokémon...
         </div>
       )}
     </>

@@ -11,11 +11,12 @@ interface PokemonCardProps {
 export function PokemonCard(props: PokemonCardProps) {
   return (
     <div className={classes.pokemonCard}>
-      <div className={classes.pokemonName}>
-        #{props.number.toString().padStart(4, "0")} {props.name}
-      </div>
       <div className={classes.pokemonImageWrapper}>
         <img src={props.image} alt={props.name} />
+      </div>
+      <div className={classes.pokemonName}>
+        <span>#{props.number.toString().padStart(4, "0")}</span>
+        <span>{props.name}</span>
       </div>
       <div className={classes.pokemonTypes}>
         {props.types.map((type) => (

@@ -8,12 +8,19 @@
   align-items: center;
   justify-content: center;
   border: 2px solid #eee;
+  z-index: 0;
+  overflow: hidden;
+
+  &:hover {
+    border: 3px solid #cccccc;
+  }
 }
 
 .pokemonName {
-  text-align: center;
-  text-transform: capitalize;
+  gap: 10px;
+  display: flex;
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 .pokemonImageWrapper {
@@ -35,4 +42,8 @@
   color: white;
   font-weight: bold;
   text-transform: capitalize;
+}
+
+.number {
+  margin-right: 8px;
 }
