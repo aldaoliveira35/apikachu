@@ -1,6 +1,6 @@
 const API_BASE_URL = "https://pokeapi.co/api/v2";
 
-export function getPokemons(
+export function getPokemon(
   signal: AbortSignal,
   limit: number,
   offset: number

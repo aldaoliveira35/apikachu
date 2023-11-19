@@ -4,7 +4,7 @@ import { Pokemon, PokemonDetailsResponse } from "./types";
 
 export function usePokemonDetails(id: string) {
   return useQuery({
-    queryKey: ["pokemons", id],
+    queryKey: ["pokemon", id],
     queryFn: async ({ signal }) => {
       const pokemonDetails: PokemonDetailsResponse = await getPokemonDetails(
         signal,

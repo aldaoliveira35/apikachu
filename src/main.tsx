@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Navbar } from "./components/Navbar/Navbar";
 import { HomePage } from "./pages/homepage/homepage";
-import { PokemonsPage } from "./pages/pokemons/pokemons";
+import { PokemonPage } from "./pages/pokemon/pokemon";
 import { PokemonDetailsPage } from "./pages/pokemon-details/pokemon-details";
 
 import "./styles/reset.css";
@@ -23,14 +23,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             padding: "25px",
             display: "flex",
             flexDirection: "column",
-            height: "calc(100% - 80px)",
+            height: "calc(100% - 90px)",
             overflowY: "auto",
           }}
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/pokemons" element={<PokemonsPage />} />
-            <Route path="/pokemons/:id" element={<PokemonDetailsPage />} />
+            <Route path="/pokemon" element={<PokemonPage />} />
+            <Route path="/pokemon/:id" element={<PokemonDetailsPage />} />
           </Routes>
         </div>
       </BrowserRouter>

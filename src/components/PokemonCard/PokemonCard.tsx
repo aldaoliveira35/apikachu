@@ -10,7 +10,7 @@ interface PokemonCardProps {
 
 export function PokemonCard(props: PokemonCardProps) {
   return (
-    <Link to={`/pokemons/${props.pokemon.id}`}>
+    <Link to={`/pokemon/${props.pokemon.id}`}>
       <div className={classes.pokemonCard}>
         <div className={classes.pokemonImageWrapper}>
           <img src={props.pokemon.image} alt={props.pokemon.name} />

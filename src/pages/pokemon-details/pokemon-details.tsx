@@ -18,14 +18,14 @@ export function PokemonDetailsPage() {
         <>
           <PokemonDetails pokemon={data} />
           {currentId !== 1 && (
-            <Link to={`/pokemons/${currentId - 1}`}>
+            <Link to={`/pokemon/${currentId - 1}`}>
               <button>Previous Pokémon</button>
             </Link>
           )}
-          <Link to={`/pokemons/${currentId + 1}`}>
+          <Link to={`/pokemon/${currentId + 1}`}>
             <button>Next Pokémon</button>
           </Link>
-          <Link to="/pokemons">
+          <Link to="/pokemon">
             <button>Back to Pokémons list</button>
           </Link>
         </>
