@@ -33,3 +33,8 @@
     box-shadow: 0 0 0 3px #bbb;
   }
 }
+
+.loadingParagraph{
+  font-size: 16px;
+  font-weight: 600;
+}

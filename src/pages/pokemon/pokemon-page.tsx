@@ -28,7 +28,7 @@ export function PokemonPage() {
       {isLoading && (
         <div className={classes.loadingIconWrapper}>
           <LoadingIcon />
-          Loading Pokémon...
+          <p className={classes.loadingParagraph}>Loading Pokémon...</p>
         </div>
       )}
     </>

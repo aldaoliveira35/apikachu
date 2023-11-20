@@ -38,7 +38,7 @@ export function Navbar() {
                   : `${classes.navLink} ${classes.navLinkActive}`
               }
             >
-              Pokemon
+              Pokémon
             </Link>
             <Link
               to="/items"

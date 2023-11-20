@@ -5,8 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Navbar } from "./components/Navbar/Navbar";
 import { HomePage } from "./pages/homepage/homepage";
-import { PokemonPage } from "./pages/pokemon/pokemon";
-import { PokemonDetailsPage } from "./pages/pokemon-details/pokemon-details";
+import { PokemonPage } from "./pages/pokemon/pokemon-page";
+import { PokemonDetailsPage } from "./pages/pokemon-details/pokemon-details-page";
 
 import "./styles/reset.css";
 import "./styles/global.css";

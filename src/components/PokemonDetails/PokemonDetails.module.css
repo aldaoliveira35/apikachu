@@ -1,3 +1,8 @@
+.detailsContainer {
+  display: flex;
+  margin: 40px;
+}
+
 .pokemonCard {
   width: 100%;
   padding: 20px 20px;
@@ -8,7 +13,6 @@
   align-items: center;
   justify-content: center;
   border: 2px solid #eee;
-  z-index: 0;
   overflow: hidden;
 }
 
@@ -42,4 +46,35 @@
 
 .number {
   margin-right: 8px;
+}
+
+.infoDisplay {
+  background-color: white;
+  width: 100%;
+  padding: 20px 20px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #eee;
+  z-index: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+.pokemonStats {
+  background-color: white;
+  width: 100%;
+  padding: 20px 20px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #eee;
+  z-index: 0;
+  overflow: hidden;
+  cursor: pointer;
 }
