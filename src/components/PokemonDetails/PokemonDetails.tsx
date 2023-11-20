@@ -33,7 +33,7 @@ export function PokemonDetails(props: PokemonDetailsProps) {
             <span className={classes.bold}>Abilities:</span>{" "}
             {props.pokemon.abilities.join(" | ")}
           </p>
-          <p className={classes.pokemonTypes}>
+          <div className={classes.pokemonTypes}>
             <span className={classes.bold}>Type:</span>
             {props.pokemon.types.map((type) => (
               <p
@@ -44,12 +44,12 @@ export function PokemonDetails(props: PokemonDetailsProps) {
                 {type}
               </p>
             ))}
-          </p>
+          </div>
         </div>
       </div>
       <div className={classes.pokemonStats}>
         {props.pokemon.stats.map((stat) => (
-          <p>
+          <p key={stat.name}>
             <span className={classes.bold}>{stat.name}:</span>
             {stat.value}
           </p>

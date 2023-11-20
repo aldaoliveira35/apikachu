@@ -10,9 +10,8 @@
 
 .pokedexGrid {
   display: grid;
+  margin: 20px 0;
   grid-template-columns: repeat(5, 1fr);
-  margin: 20px;
-  padding: 20px;
   gap: 35px;
 }
 
@@ -34,7 +33,7 @@
   }
 }
 
-.loadingParagraph{
+.loadingParagraph {
   font-size: 16px;
   font-weight: 600;
 }

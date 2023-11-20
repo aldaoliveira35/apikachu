@@ -16,7 +16,9 @@ export function usePokemonDetails(id: string) {
         name: pokemonDetails.name,
         height: pokemonDetails.height,
         weight: pokemonDetails.weight,
-        image: pokemonDetails.sprites.other["official-artwork"].front_default,
+        image:
+          pokemonDetails.sprites.other["official-artwork"].front_default ||
+          pokemonDetails.sprites.front_default,
         types: pokemonDetails.types.map(({ type }) => type.name),
         abilities: pokemonDetails.abilities.map(({ ability }) => ability.name),
         stats: pokemonDetails.stats.map(({ stat, base_stat }) => ({

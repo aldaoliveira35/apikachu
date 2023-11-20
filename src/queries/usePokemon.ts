@@ -3,17 +3,40 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getPokemon } from "../api-clients/pokemon-api-client";
 import { Pokemon, PokemonDetailsResponse, PokemonListResponse } from "./types";
 
-export function usePokemon() {
-  return useInfiniteQuery({
-    queryKey: ["pokemon"],
-    queryFn: async ({ signal, pageParam }) => {
-      const pageSize = 20;
+async function listPokemonWithSearch(signal: AbortSignal, search: string) {
+  // The API does not support pagination with a search term.
+  const pageSize = 10_000;
 
-      const { results }: PokemonListResponse = await getPokemon(
-        signal,
-        pageSize,
-        pageSize * pageParam
-      );
+  const { results }: PokemonListResponse = await getPokemon(
+    signal,
+    pageSize,
+    0
+  );
+
+  return results.filter((pokemon) => pokemon.name.startsWith(search));
+}
+
+async function listPokemon(signal: AbortSignal, pageParam: number) {
+  const pageSize = 20;
+
+  const { results }: PokemonListResponse = await getPokemon(
+    signal,
+    pageSize,
+    pageSize * pageParam
+  );
+
+  return results;
+}
+
+export function usePokemon(search: string) {
+  return useInfiniteQuery({
+    queryKey: ["pokemon", search],
+    queryFn: async ({ signal, pageParam }) => {
+      // We only filter Pokemon when the search term has 3 or more characters.
+      const results =
+        search.length === 0
+          ? await listPokemon(signal, pageParam)
+          : await listPokemonWithSearch(signal, search);
 
       const pokemonDetails: PokemonDetailsResponse[] = await Promise.all(
         results.map((pokemon) => {
@@ -28,7 +51,12 @@ export function usePokemon() {
         name: pokemon.name,
         height: pokemon.height,
         weight: pokemon.weight,
-        image: pokemon.sprites.other["official-artwork"].front_default,
+        image:
+          pokemon.sprites.other["official-artwork"].front_default ||
+          pokemon.sprites.front_default,
+        shinyImage:
+          pokemon.sprites.other["official-artwork"].front_shiny ||
+          pokemon.sprites.front_default,
         types: pokemon.types.map(({ type }) => type.name),
         abilities: pokemon.abilities.map(({ ability }) => ability.name),
         stats: pokemon.stats.map(({ stat, base_stat }) => ({

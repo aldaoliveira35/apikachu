@@ -2,6 +2,7 @@ export interface Pokemon {
   id: number;
   name: string;
   image: string;
+  shinyImage: string;
   types: string[];
   height: number;
   weight: number;
@@ -26,8 +27,10 @@ export interface PokemonDetailsResponse {
   id: number;
   name: string;
   sprites: {
+    front_default: string;
     other: {
       "official-artwork": {
+        front_shiny: string;
         front_default: string;
       };
     };
