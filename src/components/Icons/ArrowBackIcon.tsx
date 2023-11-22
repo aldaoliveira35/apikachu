@@ -10,5 +10,3 @@ export function ArrowBackIcon(props: ArrowBackIconProps) {
     </svg>
   );
 }
-
-

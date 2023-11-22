@@ -19,24 +19,21 @@ export function PokemonDetailsPage() {
     <>
       {!isLoading && data && (
         <>
-          <Link to="/pokemon" className={classes.backToPokemonButton}>
+          <Link to="/pokemon" className={classes.backToPokemonLink}>
             <ReturnIcon className={classes.arrowIcon} />
             Back to Pokémon
           </Link>
-          <div className={classes.buttonContainer}>
+          <div className={classes.linkContainer}>
             {currentId !== 1 && (
               <Link
                 to={`/pokemon/${currentId - 1}`}
-                className={classes.previousButton}
+                className={classes.previousLink}
               >
                 <ArrowBackIcon className={classes.arrowIcon} />
                 Previous Pokémon
               </Link>
             )}
-            <Link
-              to={`/pokemon/${currentId + 1}`}
-              className={classes.nextButton}
-            >
+            <Link to={`/pokemon/${currentId + 1}`} className={classes.nextLink}>
               Next Pokémon
               <ArrowForwardIcon className={classes.arrowIcon} />
             </Link>

@@ -1,0 +1,32 @@
+.pageContainer {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 90px);
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.backToTopButton {
+  border-radius: 50%;
+  background-color: #eee;
+  padding: 10px;
+  position: fixed;
+  display: flex;
+  bottom: 25px;
+  right: 50px;
+  cursor: pointer;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+
+  &:hover {
+    background-color: #ddd;
+    transition: background-color 200ms linear;
+  }
+}
+
+.backToTopIcon {
+  width: 30px;
+  height: 30px;
+}

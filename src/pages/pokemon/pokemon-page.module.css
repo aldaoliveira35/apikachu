@@ -37,3 +37,39 @@
   font-size: 16px;
   font-weight: 600;
 }
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.searchBarContainer {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.searchBar {
+  padding: 10px;
+  border: none;
+  flex-grow: 1;
+  outline: none;
+  background-color: transparent;
+}
+
+.shinyCheckbox {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.searchIcon {
+  height: 25px;
+  width: 25px;
+  margin-right: 5px;
+}

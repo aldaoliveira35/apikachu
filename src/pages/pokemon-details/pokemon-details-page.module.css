@@ -13,7 +13,7 @@
   font-weight: 600;
 }
 
-.backToPokemonButton {
+.backToPokemonLink {
   margin: 15px 40px;
   width: fit-content;
   font-weight: 600;
@@ -33,15 +33,15 @@
   }
 }
 
-.buttonContainer {
+.linkContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 0 40px;
 }
 
-.nextButton,
-.previousButton {
+.nextLink,
+.previousLink {
   width: fit-content;
   cursor: pointer;
   font-weight: 600;
@@ -60,7 +60,7 @@
   }
 }
 
-.nextButton {
+.nextLink {
   margin-left: auto;
 }
 
