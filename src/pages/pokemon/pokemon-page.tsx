@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { usePokemon } from "../../queries/usePokemon";
+import { usePokemonTypes } from "../../queries/usePokemonTypes";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 import { PokemonCard } from "../../components/PokemonCard/PokemonCard";
 import { SearchIcon } from "../../components/Icons/SearchIcon";
@@ -13,11 +14,14 @@ export function PokemonPage() {
 
   const timeoutRef = useRef<number | null>(null);
 
+  const [selectedType,setSelectedType] = useState("");
   const [showShiny, setShowShiny] = useState(false);
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
   const { data, isLoading, isFetchingNextPage, fetchNextPage } =
     usePokemon(search);
+
+  const { data: pokemonTypes = [] } = usePokemonTypes();
 
   const onSearchChange = (newSearchValue: string) => {
     if (timeoutRef.current) {
@@ -36,10 +40,17 @@ export function PokemonPage() {
   useEffect(() => {
     setSearch(searchParams.get("search") || "");
   }, [searchParams]);
+  
 
   return (
     <>
       <div className={classes.inputContainer}>
+        <select onChange={(event) => setSelectedType(event.target.value)}>
+          <option value="">--Please choose an option</option>
+          {pokemonTypes.map((type) => (
+            <option value={type}> {type} </option>
+          ))}
+        </select>
         <div className={classes.searchBarContainer}>
           <input
             className={classes.searchBar}
