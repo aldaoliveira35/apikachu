@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { usePokemon } from "../../queries/usePokemon";
@@ -32,6 +32,10 @@ export function PokemonPage() {
       setSearchParams(searchParams);
     }, 500);
   };
+
+  useEffect(() => {
+    setSearch(searchParams.get("search") || "");
+  }, [searchParams]);
 
   return (
     <>

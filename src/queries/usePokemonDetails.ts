@@ -27,5 +27,6 @@ export function usePokemonDetails(id: string) {
         })),
       } as Pokemon;
     },
+    staleTime: Infinity,
   });
 }
