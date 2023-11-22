@@ -14,14 +14,17 @@ export function PokemonPage() {
 
   const timeoutRef = useRef<number | null>(null);
 
-  const [selectedType,setSelectedType] = useState("");
   const [showShiny, setShowShiny] = useState(false);
+  const [selectedType, setSelectedType] = useState("");
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
-  const { data, isLoading, isFetchingNextPage, fetchNextPage } =
-    usePokemon(search);
-
   const { data: pokemonTypes = [] } = usePokemonTypes();
+  const {
+    data: pokemon = { pages: [], pageParams: 0 },
+    isLoading,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = usePokemon(search);
 
   const onSearchChange = (newSearchValue: string) => {
     if (timeoutRef.current) {
@@ -40,7 +43,12 @@ export function PokemonPage() {
   useEffect(() => {
     setSearch(searchParams.get("search") || "");
   }, [searchParams]);
-  
+
+  const filteredPokemon = !selectedType
+    ? pokemon.pages.flat()
+    : pokemon.pages
+        .flat()
+        .filter((pokemon) => pokemon.types.includes(selectedType));
 
   return (
     <>
@@ -71,10 +79,10 @@ export function PokemonPage() {
         </label>
       </div>
 
-      {!isLoading && data && data.pages.length > 0 && (
+      {!isLoading && filteredPokemon.length > 0 && (
         <>
           <div className={classes.pokedexGrid}>
-            {data.pages.flat().map((pokemon) => (
+            {filteredPokemon.map((pokemon) => (
               <PokemonCard
                 key={pokemon.name}
                 pokemon={pokemon}

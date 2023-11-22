@@ -28,9 +28,9 @@ async function listPokemon(signal: AbortSignal, pageParam: number) {
   return results;
 }
 
-export function usePokemon(search: string ) {
+export function usePokemon(search: string) {
   return useInfiniteQuery({
-    queryKey: ["pokemon", search ],
+    queryKey: ["pokemon", search],
     queryFn: async ({ signal, pageParam }) => {
       // We only filter Pokemon when the search term has 3 or more characters.
       const results =
