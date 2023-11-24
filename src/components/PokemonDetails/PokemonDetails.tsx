@@ -45,9 +45,7 @@ export function PokemonDetails(props: PokemonDetailsProps) {
               </p>
             ))}
           </div>
-        </div>
-      </div>
-      <div className={classes.pokemonStats}>
+          <div className={classes.pokemonStats}>
         {props.pokemon.stats.map((stat) => (
           <p key={stat.name}>
             <span className={classes.bold}>{stat.name}:</span>
@@ -55,6 +53,9 @@ export function PokemonDetails(props: PokemonDetailsProps) {
           </p>
         ))}
       </div>
+        </div>
+      </div>
+     
     </>
   );
 }
