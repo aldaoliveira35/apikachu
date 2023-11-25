@@ -23,11 +23,11 @@ export function PokemonDetails(props: PokemonDetailsProps) {
           <p className={classes.description}></p>
           <p className={classes.height}>
             <span className={classes.bold}>Height: </span>{" "}
-            {props.pokemon.height}
+            {props.pokemon.height} cm
           </p>
           <p className={classes.weight}>
             <span className={classes.bold}>Weight: </span>{" "}
-            {props.pokemon.weight}
+            {props.pokemon.weight} kg
           </p>
           <p className={classes.ability}>
             <span className={classes.bold}>Abilities:</span>{" "}
@@ -46,16 +46,15 @@ export function PokemonDetails(props: PokemonDetailsProps) {
             ))}
           </div>
           <div className={classes.pokemonStats}>
-        {props.pokemon.stats.map((stat) => (
-          <p key={stat.name}>
-            <span className={classes.bold}>{stat.name}:</span>
-            {stat.value}
-          </p>
-        ))}
-      </div>
+            {props.pokemon.stats.map((stat) => (
+              <p key={stat.name}>
+                <span className={classes.bold}>{stat.name}:</span>
+                {stat.value}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
-     
     </>
   );
 }

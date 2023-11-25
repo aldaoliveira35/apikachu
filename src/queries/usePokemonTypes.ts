@@ -8,7 +8,7 @@ export function usePokemonTypes() {
     queryFn: async ({ signal }) => {
       const pokemonTypes: PokemonTypesResponse = await getPokemonTypes(signal);
 
-      return pokemonTypes.results.map((type) => type.name);
+      return pokemonTypes.results.map((type) => type.name).sort();
     },
     staleTime: Infinity,
   });

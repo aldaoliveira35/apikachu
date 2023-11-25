@@ -53,12 +53,6 @@ export function PokemonPage() {
   return (
     <>
       <div className={classes.inputContainer}>
-        <select onChange={(event) => setSelectedType(event.target.value)}>
-          <option value="">--Please choose an option</option>
-          {pokemonTypes.map((type) => (
-            <option value={type}> {type} </option>
-          ))}
-        </select>
         <div className={classes.searchBarContainer}>
           <input
             className={classes.searchBar}
@@ -69,7 +63,15 @@ export function PokemonPage() {
           />
           <SearchIcon className={classes.searchIcon} />
         </div>
-
+        <select
+          onChange={(event) => setSelectedType(event.target.value)}
+          className={classes.selectType}
+        >
+          <option value="">Please choose an option</option>
+          {pokemonTypes.map((type) => (
+            <option value={type}> {type} </option>
+          ))}
+        </select>
         <label className={classes.shinyCheckbox}>
           Show shiny Pokémon
           <input
