@@ -1,0 +1,28 @@
+.parent {
+  height: 10px;
+  width: 100%;
+  position: relative;
+  background-color: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 10px;
+  transform-origin: left;
+  animation-name: animateStatBar;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes animateStatBar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

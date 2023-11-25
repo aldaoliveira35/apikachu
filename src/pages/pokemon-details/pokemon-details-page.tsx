@@ -6,18 +6,23 @@ import { PokemonDetails } from "../../components/PokemonDetails/PokemonDetails";
 import { ReturnIcon } from "../../components/Icons/ReturnIcon";
 import { ArrowBackIcon } from "../../components/Icons/ArrowBackIcon";
 import { ArrowForwardIcon } from "../../components/Icons/ArrowForwardIcon";
+import { EvolutionChain } from "../../components/PokemonDetails/EvolutionChain";
 
 import classes from "./pokemon-details-page.module.css";
+import { usePokemonEvolutions } from "../../queries/usePokemonEvolutions";
 
 export function PokemonDetailsPage() {
   const { id = "" } = useParams<{ id: string }>();
-  const { data, isLoading } = usePokemonDetails(id);
+  const { data: pokemonDetails, isLoading } = usePokemonDetails(id);
+  const { data: pokemonEvolutionChain = [] } = usePokemonEvolutions(id);
 
   const currentId = parseInt(id);
 
+  console.log(pokemonEvolutionChain);
+
   return (
     <>
-      {!isLoading && data && (
+      {!isLoading && pokemonDetails && (
         <>
           <Link to="/pokemon" className={classes.backToPokemonLink}>
             <ReturnIcon className={classes.arrowIcon} />
@@ -38,7 +43,10 @@ export function PokemonDetailsPage() {
               <ArrowForwardIcon className={classes.arrowIcon} />
             </Link>
           </div>
-          <PokemonDetails pokemon={data} />
+          <div className={classes.detailsWrapper}>
+            <PokemonDetails pokemon={pokemonDetails} />
+            <EvolutionChain evolutionChain={pokemonEvolutionChain} />
+          </div>
         </>
       )}
 

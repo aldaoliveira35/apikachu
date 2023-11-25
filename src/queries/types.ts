@@ -65,3 +65,21 @@ export interface PokemonTypesResponse {
     url: string;
   }>;
 }
+
+export interface PokemonSpeciesResponse {
+  evolution_chain: {
+    url: string;
+  };
+}
+
+export interface PokemonEvolutionChainResponse {
+  chain: PokemonEvolutionChain;
+}
+
+interface PokemonEvolutionChain {
+  evolves_to: PokemonEvolutionChain[];
+  species: {
+    name: string;
+    url: string;
+  };
+}

@@ -14,8 +14,10 @@ export function usePokemonDetails(id: string) {
       return {
         id: pokemonDetails.id,
         name: pokemonDetails.name,
-        height: pokemonDetails.height,
-        weight: pokemonDetails.weight,
+        // The height comes in decimeters and we want to show meters.
+        height: pokemonDetails.height / 10,
+        // The weight comes in hectograms and we want to show kilograms.
+        weight: pokemonDetails.weight / 10,
         image:
           pokemonDetails.sprites.other["official-artwork"].front_default ||
           pokemonDetails.sprites.front_default,

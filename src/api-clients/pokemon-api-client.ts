@@ -9,11 +9,15 @@ export function getPokemon(signal: AbortSignal, limit: number, offset: number) {
   return request(`pokemon?${searchParams.toString()}`, signal);
 }
 
-export function getPokemonDetails(signal: AbortSignal, id: string) {
-  return request(`pokemon/${id}`, signal);
+export function getPokemonDetails(signal: AbortSignal, idOrName: string) {
+  return request(`pokemon/${idOrName}`, signal);
 }
 export function getPokemonTypes(signal: AbortSignal) {
   return request("type", signal);
+}
+
+export function getPokemonSpecies(signal: AbortSignal, id: string) {
+  return request(`pokemon-species/${id}`, signal);
 }
 
 async function request(endpointUrl: string, signal: AbortSignal) {
