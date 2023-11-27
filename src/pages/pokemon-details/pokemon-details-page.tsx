@@ -32,7 +32,7 @@ export function PokemonDetailsPage() {
               {previousPokemon.toString().padStart(4, "0")}
             </Link>
           )}
-          <div>
+          <div className={classes.detailsInnerWrapper}>
             <PokemonDetails pokemon={pokemonDetails} />
             <EvolutionChain evolutionChain={pokemonEvolutionChain} />
           </div>

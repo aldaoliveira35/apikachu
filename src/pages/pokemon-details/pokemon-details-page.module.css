@@ -21,6 +21,11 @@
   width: 90%;
   margin: 0 auto;
 }
+
+.detailsInnerWrapper {
+  flex-grow: 1;
+}
+
 .nextLink,
 .previousLink {
   width: fit-content;
