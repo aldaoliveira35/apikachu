@@ -8,6 +8,7 @@ import { PageContainer } from "./components/PageContainer/PageContainer";
 import { HomePage } from "./pages/homepage/homepage";
 import { PokemonPage } from "./pages/pokemon/pokemon-page";
 import { PokemonDetailsPage } from "./pages/pokemon-details/pokemon-details-page";
+import { ItemsPage } from "./pages/items/items-page";
 
 import "./styles/reset.css";
 import "./styles/global.css";
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="/" element={<HomePage />} />
             <Route path="/pokemon" element={<PokemonPage />} />
             <Route path="/pokemon/:id" element={<PokemonDetailsPage />} />
+            <Route path="/items" element={<ItemsPage />} />
           </Routes>
         </PageContainer>
       </BrowserRouter>

@@ -13,33 +13,14 @@
   font-weight: 600;
 }
 
-.backToPokemonLink {
-  margin: 15px 40px;
-  width: fit-content;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 10px;
-  color: #121212;
-  background: #f2f2f2;
-  line-height: 1.15;
-  font-size: 16px;
+.detailsWrapper {
   display: flex;
   align-items: center;
-  gap: 2px;
-
-  &:hover {
-    transition: all 0.1s ease;
-    box-shadow: 0 0 0 3px #bbb;
-  }
+  justify-content: space-between;
+  gap: 80px;
+  width: 90%;
+  margin: 0 auto;
 }
-
-.linkContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0 40px;
-}
-
 .nextLink,
 .previousLink {
   width: fit-content;
@@ -60,17 +41,7 @@
   }
 }
 
-.nextLink {
-  margin-left: auto;
-}
-
 .arrowIcon {
   width: 25px;
   height: 25px;
-}
-
-.detailsWrapper {
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 30px;
 }

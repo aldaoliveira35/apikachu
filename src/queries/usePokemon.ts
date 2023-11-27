@@ -32,7 +32,6 @@ export function usePokemon(search: string) {
   return useInfiniteQuery({
     queryKey: ["pokemon", search],
     queryFn: async ({ signal, pageParam }) => {
-      // We only filter Pokemon when the search term has 3 or more characters.
       const results =
         search.length === 0
           ? await listPokemon(signal, pageParam)
@@ -54,9 +53,7 @@ export function usePokemon(search: string) {
         image:
           pokemon.sprites.other["official-artwork"].front_default ||
           pokemon.sprites.front_default,
-        shinyImage:
-          pokemon.sprites.other["official-artwork"].front_shiny ||
-          pokemon.sprites.front_default,
+        oldSchoolImage: pokemon.sprites.front_default,
         types: pokemon.types.map(({ type }) => type.name),
         abilities: pokemon.abilities.map(({ ability }) => ability.name),
         stats: pokemon.stats.map(({ stat, base_stat }) => ({

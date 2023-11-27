@@ -1,4 +1,4 @@
-.pokemonCard {
+.itemCard {
   background-color: white;
   width: 100%;
   padding: 20px 20px;
@@ -9,45 +9,45 @@
   align-items: center;
   justify-content: center;
   border: 2px solid #eee;
-  z-index: 0;
-  overflow: hidden;
-  cursor: pointer;
 
   &:hover {
     border: 3px solid #bbb;
   }
 }
 
-.pokemonName {
-  gap: 10px;
+.itemImageWrapper {
   display: flex;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.pokemonImageWrapper {
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
   aspect-ratio: 1;
   margin: 20px auto;
   background-color: #f2f2f2;
 }
 
-.pokemonImage {
+.itemImage {
   width: 100%;
   height: 100%;
 }
-
-.pokemonTypes {
-  display: flex;
-  justify-content: space-around;
-  margin: 10px 0 30px 0;
+.itemInfo {
   gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.pokemonType {
-  padding: 5px 10px;
-  border-radius: 7px;
-  color: white;
-  font-weight: bold;
+.boldText {
+  font-weight: 600;
   text-transform: capitalize;
+}
+
+.capitalizeText {
+  text-transform: capitalize;
+}
+
+.brokenImageIcon {
+  width: 80px;
+  height: 80px;
 }

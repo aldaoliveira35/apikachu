@@ -67,3 +67,8 @@
   font-weight: 450;
   margin-bottom: 10px;
 }
+
+.styledStat {
+  margin: 5px;
+  text-transform: capitalize;
+}

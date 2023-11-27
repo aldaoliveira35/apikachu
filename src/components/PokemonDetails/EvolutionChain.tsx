@@ -34,6 +34,11 @@ export function EvolutionChain(props: EvolutionChainProps) {
             )}
           </>
         ))}
+        {props.evolutionChain.length < 1 && (
+          <p className={classes.noEvolutionsDisplay}>
+            There seem to be no evolutions available.
+          </p>
+        )}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { useState } from "react";
 import classes from "./Navbar.module.css";
 
 export function Navbar() {
-  const [isHidden, setIsHidden] = useState(true);
+  const [isHidden, setIsHidden] = useState(false);
   const location = useLocation();
 
   return (

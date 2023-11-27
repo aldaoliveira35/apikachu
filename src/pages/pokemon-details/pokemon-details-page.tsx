@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { usePokemonDetails } from "../../queries/usePokemonDetails";
 import { LoadingIcon } from "../../components/LoadingIcon/LoadingIcon";
 import { PokemonDetails } from "../../components/PokemonDetails/PokemonDetails";
-import { ReturnIcon } from "../../components/Icons/ReturnIcon";
 import { ArrowBackIcon } from "../../components/Icons/ArrowBackIcon";
 import { ArrowForwardIcon } from "../../components/Icons/ArrowForwardIcon";
 import { EvolutionChain } from "../../components/PokemonDetails/EvolutionChain";
@@ -16,38 +15,32 @@ export function PokemonDetailsPage() {
   const { data: pokemonDetails, isLoading } = usePokemonDetails(id);
   const { data: pokemonEvolutionChain = [] } = usePokemonEvolutions(id);
 
-  const currentId = parseInt(id);
-
-  console.log(pokemonEvolutionChain);
+  const currentPokemon = parseInt(id);
+  const previousPokemon = currentPokemon - 1;
+  const nextPokemon = currentPokemon + 1;
 
   return (
     <>
       {!isLoading && pokemonDetails && (
-        <>
-          <Link to="/pokemon" className={classes.backToPokemonLink}>
-            <ReturnIcon className={classes.arrowIcon} />
-            Back to Pokémon
-          </Link>
-          <div className={classes.linkContainer}>
-            {currentId !== 1 && (
-              <Link
-                to={`/pokemon/${currentId - 1}`}
-                className={classes.previousLink}
-              >
-                <ArrowBackIcon className={classes.arrowIcon} />
-                Previous Pokémon
-              </Link>
-            )}
-            <Link to={`/pokemon/${currentId + 1}`} className={classes.nextLink}>
-              Next Pokémon
-              <ArrowForwardIcon className={classes.arrowIcon} />
+        <div className={classes.detailsWrapper}>
+          {currentPokemon !== 1 && (
+            <Link
+              to={`/pokemon/${previousPokemon}`}
+              className={classes.previousLink}
+            >
+              <ArrowBackIcon className={classes.arrowIcon} />#
+              {previousPokemon.toString().padStart(4, "0")}
             </Link>
-          </div>
-          <div className={classes.detailsWrapper}>
+          )}
+          <div>
             <PokemonDetails pokemon={pokemonDetails} />
             <EvolutionChain evolutionChain={pokemonEvolutionChain} />
           </div>
-        </>
+          <Link to={`/pokemon/${nextPokemon}`} className={classes.nextLink}>
+            #{nextPokemon.toString().padStart(4, "0")}
+            <ArrowForwardIcon className={classes.arrowIcon} />
+          </Link>
+        </div>
       )}
 
       {isLoading && (

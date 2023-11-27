@@ -39,10 +39,7 @@ export function PokemonDetails(props: PokemonDetailsProps) {
           </div>
           {props.pokemon.stats.map((stat, statIndex) => (
             <>
-              <p
-                key={stat.name}
-                style={{ margin: "5px", textTransform: "capitalize" }}
-              >
+              <p key={stat.name} className={classes.styledStat}>
                 {stat.name} : {stat.value}
               </p>
               <BaseStatBar

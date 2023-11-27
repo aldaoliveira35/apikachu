@@ -2,7 +2,7 @@ export interface Pokemon {
   id: number;
   name: string;
   image: string;
-  shinyImage: string;
+  oldSchoolImage: string;
   types: string[];
   height: number;
   weight: number;
@@ -30,7 +30,6 @@ export interface PokemonDetailsResponse {
     front_default: string;
     other: {
       "official-artwork": {
-        front_shiny: string;
         front_default: string;
       };
     };
@@ -82,4 +81,39 @@ interface PokemonEvolutionChain {
     name: string;
     url: string;
   };
+}
+
+export interface ItemsResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Array<{
+    name: string;
+    url: string;
+  }>;
+}
+
+export interface ItemDetailsResponse {
+  id: number;
+  name: string;
+  sprites: {
+    default: string;
+  };
+  category: {
+    name: string;
+    url: string;
+  };
+  cost: number;
+  effect_entries: Array<{
+    short_effect: string;
+  }>;
+}
+
+export interface Item {
+  id: number;
+  name: string;
+  image: string;
+  cost: number;
+  category: string;
+  effect: string;
 }

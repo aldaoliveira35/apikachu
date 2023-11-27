@@ -6,7 +6,7 @@ import classes from "./PokemonCard.module.css";
 
 interface PokemonCardProps {
   pokemon: Pokemon;
-  showShinyImage: boolean;
+  showOldSchoolImage: boolean;
 }
 
 export function PokemonCard(props: PokemonCardProps) {
@@ -16,8 +16,8 @@ export function PokemonCard(props: PokemonCardProps) {
         <div className={classes.pokemonImageWrapper}>
           <img
             src={
-              props.showShinyImage
-                ? props.pokemon.shinyImage
+              props.showOldSchoolImage
+                ? props.pokemon.oldSchoolImage
                 : props.pokemon.image
             }
             alt={props.pokemon.name}

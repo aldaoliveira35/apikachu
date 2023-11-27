@@ -20,6 +20,14 @@ export function getPokemonSpecies(signal: AbortSignal, id: string) {
   return request(`pokemon-species/${id}`, signal);
 }
 
+export function getItems(signal: AbortSignal, limit: number, offset: number) {
+  const searchParams = new URLSearchParams({
+    limit: limit.toString(),
+    offset: offset.toString(),
+  });
+  return request(`item?${searchParams.toString()}`, signal);
+}
+
 async function request(endpointUrl: string, signal: AbortSignal) {
   try {
     const response = await fetch(`${API_BASE_URL}/${endpointUrl}`, {

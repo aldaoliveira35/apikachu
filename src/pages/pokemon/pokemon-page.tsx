@@ -14,7 +14,7 @@ export function PokemonPage() {
 
   const timeoutRef = useRef<number | null>(null);
 
-  const [showShiny, setShowShiny] = useState(false);
+  const [showOldSchoolImage, setShowOldSchoolImage] = useState(false);
   const [selectedType, setSelectedType] = useState("");
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
@@ -73,10 +73,10 @@ export function PokemonPage() {
           ))}
         </select>
         <label className={classes.shinyCheckbox}>
-          Show shiny Pokémon
+          Click here for nostalgia
           <input
             type="checkbox"
-            onChange={(event) => setShowShiny(event.target.checked)}
+            onChange={(event) => setShowOldSchoolImage(event.target.checked)}
           />
         </label>
       </div>
@@ -88,7 +88,7 @@ export function PokemonPage() {
               <PokemonCard
                 key={pokemon.name}
                 pokemon={pokemon}
-                showShinyImage={showShiny}
+                showOldSchoolImage={showOldSchoolImage}
               />
             ))}
           </div>
