@@ -2,42 +2,33 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getItems } from "../api-clients/pokemon-api-client";
 import { ItemsResponse, ItemDetailsResponse } from "./types";
 
-async function listItemWithSearch(signal: AbortSignal, search: string) {
-  // The API does not support pagination with a search term.
-  const pageSize = 10_000;
+const PAGE_SIZE = 24;
 
-  const { results }: ItemsResponse = await getItems(signal, pageSize, 0);
+async function listItems(
+  signal: AbortSignal,
+  pageParam: number,
+  search: string
+) {
+  const sanitisedSearch = search.toLowerCase();
 
-  return results.filter((item) => item.name.includes(search));
-}
+  const { results }: ItemsResponse = await getItems(signal);
 
-async function listItem(signal: AbortSignal, pageParam: number) {
-  const pageSize = 24;
-
-  const { results }: ItemsResponse = await getItems(
-    signal,
-    pageSize,
-    pageSize * pageParam
-  );
-
-  return results;
+  return results
+    .filter((item) => item.name.toLowerCase().includes(sanitisedSearch))
+    .slice(PAGE_SIZE * pageParam, PAGE_SIZE * pageParam + PAGE_SIZE)
+    .map(({ url }) => url);
 }
 
 export function useItems(search: string) {
   return useInfiniteQuery({
     queryKey: ["item", search],
     queryFn: async ({ signal, pageParam }) => {
-      const results =
-        search.length === 0
-          ? await listItem(signal, pageParam)
-          : await listItemWithSearch(signal, search);
+      const itemUrls = await listItems(signal, pageParam, search);
 
       const itemDetails: ItemDetailsResponse[] = await Promise.all(
-        results.map((item) => {
-          return fetch(item.url, { signal }).then((response) =>
-            response.json()
-          );
-        })
+        itemUrls.map((url) =>
+          fetch(url, { signal }).then((response) => response.json())
+        )
       );
 
       return itemDetails.map((item) => ({
@@ -54,6 +45,10 @@ export function useItems(search: string) {
     },
     staleTime: Infinity,
     initialPageParam: 0,
-    getNextPageParam: (_lastPage, pages) => pages.length,
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage.length < PAGE_SIZE) return;
+
+      return pages.length;
+    },
   });
 }

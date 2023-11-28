@@ -1,6 +1,7 @@
 export interface Pokemon {
   id: number;
   name: string;
+  description: string;
   image: string;
   oldSchoolImage: string;
   types: string[];
@@ -11,6 +12,15 @@ export interface Pokemon {
     name: string;
     value: number;
   }>;
+}
+
+export interface Item {
+  id: number;
+  name: string;
+  image: string;
+  cost: number;
+  category: string;
+  effect: string;
 }
 
 export interface PokemonListResponse {
@@ -69,6 +79,12 @@ export interface PokemonSpeciesResponse {
   evolution_chain: {
     url: string;
   };
+  flavor_text_entries: Array<{
+    flavor_text: string;
+    language: {
+      name: string;
+    };
+  }>;
 }
 
 export interface PokemonEvolutionChainResponse {
@@ -109,11 +125,11 @@ export interface ItemDetailsResponse {
   }>;
 }
 
-export interface Item {
-  id: number;
-  name: string;
-  image: string;
-  cost: number;
-  category: string;
-  effect: string;
+export interface PokemonTypeDetailsResponse {
+  pokemon: Array<{
+    pokemon: {
+      name: string;
+      url: string;
+    };
+  }>;
 }

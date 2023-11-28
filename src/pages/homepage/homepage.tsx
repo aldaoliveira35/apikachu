@@ -9,7 +9,7 @@ export function HomePage() {
         <span className={classes.info}>
           Everything you want to know about pokémon is here!
         </span>
-        <Link to="/pokemon" className={classes.homePageButton}>
+        <Link to="/pokemon" className={classes.homePageLink}>
           <img
             src="/homepage-fetch-em-all.png"
             alt="Go Fetch'Em All Link"

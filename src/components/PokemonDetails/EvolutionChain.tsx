@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { ArrowForwardIcon } from "../Icons/ArrowForwardIcon";
 import classes from "./EvolutionChain.module.css";
@@ -16,7 +17,7 @@ export function EvolutionChain(props: EvolutionChainProps) {
       <p className={classes.title}>Evolutions</p>
       <div className={classes.evolutionChain}>
         {props.evolutionChain.map((pokemon, index) => (
-          <>
+          <Fragment key={pokemon.id}>
             <div className={classes.pokemonWrapper}>
               <div className={classes.pokemonImageWrapper}>
                 <Link to={`/pokemon/${pokemon.id}`}>
@@ -32,7 +33,7 @@ export function EvolutionChain(props: EvolutionChainProps) {
             {props.evolutionChain.length - 1 !== index && (
               <ArrowForwardIcon className={classes.arrowIcon} />
             )}
-          </>
+          </Fragment>
         ))}
         {props.evolutionChain.length < 1 && (
           <p className={classes.noEvolutionsDisplay}>

@@ -5,6 +5,7 @@
 
 .pokemonCard {
   width: 40%;
+  flex-shrink: 0;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   border: 2px solid #eee;
@@ -36,7 +37,6 @@
   font-weight: 600;
   text-transform: capitalize;
   font-size: 25px;
-  margin-bottom: 20px;
 }
 
 .pokemonTypes {
@@ -46,14 +46,13 @@
   margin: 5px 0 30px 0;
   gap: 10px;
   font-size: large;
-  font-weight: 450;
+  font-weight: 500;
 }
 
 .pokemonType {
   padding: 5px 10px;
   border-radius: 7px;
   color: white;
-  font-weight: bold;
   text-transform: capitalize;
 }
 
@@ -63,12 +62,30 @@
 
 .name {
   text-transform: capitalize;
+  text-align: center;
   font-size: large;
-  font-weight: 450;
+  font-weight: 500;
   margin-bottom: 10px;
 }
 
 .styledStat {
   margin: 5px;
   text-transform: capitalize;
+}
+
+.description {
+  text-align: center;
+  margin: 15px 0;
+  font-size: large;
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 900px) {
+  .detailsContainer {
+    flex-direction: column;
+  }
+
+  .pokemonCard {
+    width: 100%;
+  }
 }

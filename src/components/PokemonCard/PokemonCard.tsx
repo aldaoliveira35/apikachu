@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getColorByType } from "../../utils/colorsByType";
 import { Pokemon } from "../../queries/types";
 import classes from "./PokemonCard.module.css";
+import { BrokenImageIcon } from "../Icons/BrokenImageIcon";
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -10,19 +11,22 @@ interface PokemonCardProps {
 }
 
 export function PokemonCard(props: PokemonCardProps) {
+  const pokemonImage = props.showOldSchoolImage
+    ? props.pokemon.oldSchoolImage
+    : props.pokemon.image;
   return (
     <Link to={`/pokemon/${props.pokemon.id}`}>
       <div className={classes.pokemonCard}>
         <div className={classes.pokemonImageWrapper}>
-          <img
-            src={
-              props.showOldSchoolImage
-                ? props.pokemon.oldSchoolImage
-                : props.pokemon.image
-            }
-            alt={props.pokemon.name}
-            className={classes.pokemonImage}
-          />
+          {pokemonImage ? (
+            <img
+              src={pokemonImage}
+              alt={props.pokemon.name}
+              className={classes.pokemonImage}
+            />
+          ) : (
+            <BrokenImageIcon className={classes.brokenImageIcon} />
+          )}
         </div>
         <div className={classes.pokemonName}>
           <span>#{props.pokemon.id.toString().padStart(4, "0")}</span>

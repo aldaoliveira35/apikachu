@@ -26,6 +26,9 @@
 }
 
 .pokemonImageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   aspect-ratio: 1;
   margin: 20px auto;
@@ -50,4 +53,8 @@
   color: white;
   font-weight: bold;
   text-transform: capitalize;
+}
+.brokenImageIcon {
+  width: 80px;
+  height: 80px;
 }

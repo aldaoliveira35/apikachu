@@ -6,6 +6,7 @@
   width: calc(100% + 50px);
   height: calc(100% + 50px);
 }
+
 .homePage {
   display: flex;
   flex-direction: column;
@@ -15,10 +16,21 @@
   height: 100%;
   backdrop-filter: blur(5px);
   gap: 20px;
+  padding: 40px;
 }
+
+.homePageLink {
+  max-width: 100%;
+}
+
+.homePageLink img {
+  width: 100%;
+}
+
 .info {
   font-size: 30px;
   color: white;
   font-weight: 900;
   text-transform: capitalize;
+  text-align: center;
 }

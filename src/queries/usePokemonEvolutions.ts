@@ -3,7 +3,7 @@ import {
   getPokemonDetails,
   getPokemonSpecies,
 } from "../api-clients/pokemon-api-client";
-import {
+import type {
   PokemonDetailsResponse,
   PokemonSpeciesResponse,
   PokemonEvolutionChainResponse,

@@ -13,21 +13,11 @@
   font-weight: 600;
 }
 
-.detailsWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 80px;
-  width: 90%;
-  margin: 0 auto;
-}
-
 .detailsInnerWrapper {
   flex-grow: 1;
 }
 
-.nextLink,
-.previousLink {
+.styledLink {
   width: fit-content;
   cursor: pointer;
   font-weight: 600;
@@ -49,4 +39,21 @@
 .arrowIcon {
   width: 25px;
   height: 25px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .styledLink {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 901px) {
+  .detailsWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    width: 90%;
+    margin: 0 auto;
+  }
 }

@@ -17,6 +17,7 @@ export function ItemsPage() {
   const {
     data: item = { pages: [], pageParams: 0 },
     isLoading,
+    hasNextPage,
     isFetchingNextPage,
     fetchNextPage,
   } = useItems(search);
@@ -61,15 +62,13 @@ export function ItemsPage() {
               <ItemCard key={item.id} item={item} />
             ))}
           </div>
-          {search.length === 0 && (
-            <button
-              disabled={isFetchingNextPage}
-              className={classes.fetchMoreButton}
-              onClick={() => fetchNextPage()}
-            >
-              Fetch more Items
-            </button>
-          )}
+          <button
+            disabled={isFetchingNextPage || !hasNextPage}
+            className={classes.fetchMoreButton}
+            onClick={() => fetchNextPage()}
+          >
+            Fetch more Items
+          </button>
         </>
       )}
 

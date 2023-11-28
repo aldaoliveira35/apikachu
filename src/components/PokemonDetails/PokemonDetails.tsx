@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { BaseStatBar } from "./BaseStatBar";
 import { Pokemon } from "../../queries/types";
 import { getColorByType } from "../../utils/colorsByType";
@@ -20,6 +21,7 @@ export function PokemonDetails(props: PokemonDetailsProps) {
           <div className={classes.pokemonName}>
             #{props.pokemon.id.toString().padStart(4, "0")} {props.pokemon.name}
           </div>
+          <p className={classes.description}>{props.pokemon.description}</p>
           <p className={classes.name}>Height: {props.pokemon.height}m</p>
           <p className={classes.name}>Weight: {props.pokemon.weight}kg</p>
           <p className={classes.name}>
@@ -38,8 +40,8 @@ export function PokemonDetails(props: PokemonDetailsProps) {
             ))}
           </div>
           {props.pokemon.stats.map((stat, statIndex) => (
-            <>
-              <p key={stat.name} className={classes.styledStat}>
+            <Fragment key={stat.name}>
+              <p className={classes.styledStat}>
                 {stat.name} : {stat.value}
               </p>
               <BaseStatBar
@@ -52,7 +54,7 @@ export function PokemonDetails(props: PokemonDetailsProps) {
                     : getColorByType(props.pokemon.types[1])
                 }
               />
-            </>
+            </Fragment>
           ))}
         </div>
       </div>

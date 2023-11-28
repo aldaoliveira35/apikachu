@@ -1,6 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPokemonDetails } from "../api-clients/pokemon-api-client";
-import { Pokemon, PokemonDetailsResponse } from "./types";
+import {
+  getPokemonDetails,
+  getPokemonSpecies,
+} from "../api-clients/pokemon-api-client";
+import {
+  Pokemon,
+  PokemonDetailsResponse,
+  PokemonSpeciesResponse,
+} from "./types";
 
 export function usePokemonDetails(id: string) {
   return useQuery({
@@ -11,9 +18,25 @@ export function usePokemonDetails(id: string) {
         id
       );
 
+      const pokemonSpecies: PokemonSpeciesResponse = await getPokemonSpecies(
+        signal,
+        id
+      );
+
+      // Replaces weird characters that the API returns.
+      let pokemonDescription =
+        pokemonSpecies.flavor_text_entries
+          .find(({ language }) => language.name === "en")
+          ?.flavor_text.replaceAll(/[\f\n]/g, " ") || "";
+
+      pokemonDescription =
+        pokemonDescription.charAt(0).toUpperCase() +
+        pokemonDescription.slice(1).toLowerCase();
+
       return {
         id: pokemonDetails.id,
         name: pokemonDetails.name,
+        description: pokemonDescription,
         // The height comes in decimeters and we want to show meters.
         height: pokemonDetails.height / 10,
         // The weight comes in hectograms and we want to show kilograms.

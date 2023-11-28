@@ -22,9 +22,10 @@ export function PokemonPage() {
   const {
     data: pokemon = { pages: [], pageParams: 0 },
     isLoading,
+    hasNextPage,
     isFetchingNextPage,
     fetchNextPage,
-  } = usePokemon(search);
+  } = usePokemon(search, selectedType);
 
   const onSearchChange = (newSearchValue: string) => {
     if (timeoutRef.current) {
@@ -44,12 +45,6 @@ export function PokemonPage() {
     setSearch(searchParams.get("search") || "");
   }, [searchParams]);
 
-  const filteredPokemon = !selectedType
-    ? pokemon.pages.flat()
-    : pokemon.pages
-        .flat()
-        .filter((pokemon) => pokemon.types.includes(selectedType));
-
   return (
     <>
       <div className={classes.inputContainer}>
@@ -67,9 +62,11 @@ export function PokemonPage() {
           onChange={(event) => setSelectedType(event.target.value)}
           className={classes.selectType}
         >
-          <option value="">Please choose an option</option>
+          <option value="">Filter by type</option>
           {pokemonTypes.map((type) => (
-            <option value={type}> {type} </option>
+            <option value={type} key={type}>
+              {type}
+            </option>
           ))}
         </select>
         <label className={classes.shinyCheckbox}>
@@ -81,10 +78,10 @@ export function PokemonPage() {
         </label>
       </div>
 
-      {!isLoading && filteredPokemon.length > 0 && (
+      {!isLoading && pokemon.pages.length > 0 && (
         <>
           <div className={classes.pokedexGrid}>
-            {filteredPokemon.map((pokemon) => (
+            {pokemon.pages.flat().map((pokemon) => (
               <PokemonCard
                 key={pokemon.name}
                 pokemon={pokemon}
@@ -93,15 +90,13 @@ export function PokemonPage() {
             ))}
           </div>
 
-          {search.length === 0 && (
-            <button
-              disabled={isFetchingNextPage}
-              className={classes.fetchMoreButton}
-              onClick={() => fetchNextPage()}
-            >
-              Fetch more Pokémon
-            </button>
-          )}
+          <button
+            disabled={isFetchingNextPage || !hasNextPage}
+            className={classes.fetchMoreButton}
+            onClick={() => fetchNextPage()}
+          >
+            Fetch more Pokémon
+          </button>
         </>
       )}
 

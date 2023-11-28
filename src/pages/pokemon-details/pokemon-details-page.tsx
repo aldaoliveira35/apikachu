@@ -26,7 +26,7 @@ export function PokemonDetailsPage() {
           {currentPokemon !== 1 && (
             <Link
               to={`/pokemon/${previousPokemon}`}
-              className={classes.previousLink}
+              className={classes.styledLink}
             >
               <ArrowBackIcon className={classes.arrowIcon} />#
               {previousPokemon.toString().padStart(4, "0")}
@@ -36,7 +36,7 @@ export function PokemonDetailsPage() {
             <PokemonDetails pokemon={pokemonDetails} />
             <EvolutionChain evolutionChain={pokemonEvolutionChain} />
           </div>
-          <Link to={`/pokemon/${nextPokemon}`} className={classes.nextLink}>
+          <Link to={`/pokemon/${nextPokemon}`} className={classes.styledLink}>
             #{nextPokemon.toString().padStart(4, "0")}
             <ArrowForwardIcon className={classes.arrowIcon} />
           </Link>
