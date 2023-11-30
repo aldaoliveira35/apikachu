@@ -7,14 +7,14 @@ interface BaseStatBarProps {
   color: string;
 }
 
-export function BaseStatBar(props: BaseStatBarProps) {
-  const percentage = Math.round((props.value / BASE_STAT_MAX_VALUE) * 100);
+export function BaseStatBar({ value, color }: BaseStatBarProps) {
+  const percentage = Math.round((value / BASE_STAT_MAX_VALUE) * 100);
 
   return (
-    <div className={classes.parent}>
+    <div className={classes.backgroundBar}>
       <div
-        className={classes.child}
-        style={{ width: `${percentage}%`, backgroundColor: props.color }}
+        className={classes.animatedBar}
+        style={{ width: `${percentage}%`, backgroundColor: color }}
       />
     </div>
   );

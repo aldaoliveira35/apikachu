@@ -9,8 +9,6 @@
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   border: 2px solid #eee;
-  overflow: hidden;
-  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,10 +52,6 @@
   border-radius: 7px;
   color: white;
   text-transform: capitalize;
-}
-
-.number {
-  margin-right: 8px;
 }
 
 .name {

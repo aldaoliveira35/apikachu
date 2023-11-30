@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
+import type { Pokemon } from "../../types/types";
 import { getColorByType } from "../../utils/colorsByType";
-import { Pokemon } from "../../queries/types";
 import classes from "./PokemonCard.module.css";
 import { BrokenImageIcon } from "../Icons/BrokenImageIcon";
 
@@ -10,18 +10,18 @@ interface PokemonCardProps {
   showOldSchoolImage: boolean;
 }
 
-export function PokemonCard(props: PokemonCardProps) {
-  const pokemonImage = props.showOldSchoolImage
-    ? props.pokemon.oldSchoolImage
-    : props.pokemon.image;
+export function PokemonCard({ pokemon, showOldSchoolImage }: PokemonCardProps) {
+  const pokemonImage = showOldSchoolImage
+    ? pokemon.oldSchoolImage
+    : pokemon.image;
   return (
-    <Link to={`/pokemon/${props.pokemon.id}`}>
+    <Link to={`/pokemon/${pokemon.id}`}>
       <div className={classes.pokemonCard}>
         <div className={classes.pokemonImageWrapper}>
           {pokemonImage ? (
             <img
               src={pokemonImage}
-              alt={props.pokemon.name}
+              alt={pokemon.name}
               className={classes.pokemonImage}
             />
           ) : (
@@ -29,11 +29,11 @@ export function PokemonCard(props: PokemonCardProps) {
           )}
         </div>
         <div className={classes.pokemonName}>
-          <span>#{props.pokemon.id.toString().padStart(4, "0")}</span>
-          <span>{props.pokemon.name}</span>
+          <span>#{pokemon.id.toString().padStart(4, "0")}</span>
+          <span>{pokemon.name}</span>
         </div>
         <div className={classes.pokemonTypes}>
-          {props.pokemon.types.map((type) => (
+          {pokemon.types.map((type) => (
             <div
               key={type}
               className={classes.pokemonType}

@@ -7,7 +7,7 @@ import type {
   PokemonDetailsResponse,
   PokemonSpeciesResponse,
   PokemonEvolutionChainResponse,
-} from "./types";
+} from "../types/types";
 
 export function usePokemonEvolutions(id: string) {
   return useQuery({

@@ -60,7 +60,7 @@ export function PokemonPage() {
         </div>
         <select
           onChange={(event) => setSelectedType(event.target.value)}
-          className={classes.selectType}
+          className={classes.filterByType}
         >
           <option value="">Filter by type</option>
           {pokemonTypes.map((type) => (

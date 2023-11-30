@@ -4,12 +4,12 @@ import {
   getPokemon,
   getPokemonTypeDetails,
 } from "../api-clients/pokemon-api-client";
-import {
+import type {
   Pokemon,
   PokemonListResponse,
   PokemonDetailsResponse,
   PokemonTypeDetailsResponse,
-} from "./types";
+} from "../types/types";
 
 const PAGE_SIZE = 20;
 

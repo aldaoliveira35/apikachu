@@ -11,12 +11,12 @@ interface EvolutionChainProps {
   }>;
 }
 
-export function EvolutionChain(props: EvolutionChainProps) {
+export function EvolutionChain({ evolutionChain }: EvolutionChainProps) {
   return (
     <div className={classes.mainWrapper}>
       <p className={classes.title}>Evolutions</p>
       <div className={classes.evolutionChain}>
-        {props.evolutionChain.map((pokemon, index) => (
+        {evolutionChain.map((pokemon, index) => (
           <Fragment key={pokemon.id}>
             <div className={classes.pokemonWrapper}>
               <div className={classes.pokemonImageWrapper}>
@@ -30,12 +30,12 @@ export function EvolutionChain(props: EvolutionChainProps) {
               <span className={classes.textDisplay}>{pokemon.name}</span>
             </div>
 
-            {props.evolutionChain.length - 1 !== index && (
+            {evolutionChain.length - 1 !== index && (
               <ArrowForwardIcon className={classes.arrowIcon} />
             )}
           </Fragment>
         ))}
-        {props.evolutionChain.length < 1 && (
+        {evolutionChain.length < 1 && (
           <p className={classes.noEvolutionsDisplay}>
             There seem to be no evolutions available.
           </p>

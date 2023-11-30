@@ -5,10 +5,8 @@ export function HomePage() {
   return (
     <div className={classes.homePageParent}>
       <div className={classes.homePage}>
-        <span className={classes.info}>This is your go-to Pokémon wiki.</span>
-        <span className={classes.info}>
-          Everything you want to know about pokémon is here!
-        </span>
+        <span className={classes.info}>New to the Pokémon world?</span>
+        <span className={classes.info}>Your beginner guide is right here!</span>
         <Link to="/pokemon" className={classes.homePageLink}>
           <img
             src="/homepage-fetch-em-all.png"

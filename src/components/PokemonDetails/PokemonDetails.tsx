@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { BaseStatBar } from "./BaseStatBar";
-import { Pokemon } from "../../queries/types";
+import type { Pokemon } from "../../types/types";
 import { getColorByType } from "../../utils/colorsByType";
 
 import classes from "./PokemonDetails.module.css";
@@ -9,27 +9,27 @@ interface PokemonDetailsProps {
   pokemon: Pokemon;
 }
 
-export function PokemonDetails(props: PokemonDetailsProps) {
+export function PokemonDetails({ pokemon }: PokemonDetailsProps) {
   return (
     <>
       <div className={classes.detailsContainer}>
         <div className={classes.pokemonCard}>
-          <img src={props.pokemon.image} alt={props.pokemon.name} />
+          <img src={pokemon.image} alt={pokemon.name} />
         </div>
 
         <div className={classes.infoDisplay}>
           <div className={classes.pokemonName}>
-            #{props.pokemon.id.toString().padStart(4, "0")} {props.pokemon.name}
+            #{pokemon.id.toString().padStart(4, "0")} {pokemon.name}
           </div>
-          <p className={classes.description}>{props.pokemon.description}</p>
-          <p className={classes.name}>Height: {props.pokemon.height}m</p>
-          <p className={classes.name}>Weight: {props.pokemon.weight}kg</p>
+          <p className={classes.description}>{pokemon.description}</p>
+          <p className={classes.name}>Height: {pokemon.height}m</p>
+          <p className={classes.name}>Weight: {pokemon.weight}kg</p>
           <p className={classes.name}>
-            Abilities: {props.pokemon.abilities.join(" | ")}
+            Abilities: {pokemon.abilities.join(" | ")}
           </p>
           <div className={classes.pokemonTypes}>
             Type:
-            {props.pokemon.types.map((type) => (
+            {pokemon.types.map((type) => (
               <p
                 key={type}
                 className={classes.pokemonType}
@@ -39,7 +39,7 @@ export function PokemonDetails(props: PokemonDetailsProps) {
               </p>
             ))}
           </div>
-          {props.pokemon.stats.map((stat, statIndex) => (
+          {pokemon.stats.map((stat, statIndex) => (
             <Fragment key={stat.name}>
               <p className={classes.styledStat}>
                 {stat.name} : {stat.value}
@@ -47,11 +47,11 @@ export function PokemonDetails(props: PokemonDetailsProps) {
               <BaseStatBar
                 value={stat.value}
                 color={
-                  props.pokemon.types.length === 1
-                    ? getColorByType(props.pokemon.types[0])
+                  pokemon.types.length === 1
+                    ? getColorByType(pokemon.types[0])
                     : statIndex % 2 === 0
-                    ? getColorByType(props.pokemon.types[0])
-                    : getColorByType(props.pokemon.types[1])
+                    ? getColorByType(pokemon.types[0])
+                    : getColorByType(pokemon.types[1])
                 }
               />
             </Fragment>

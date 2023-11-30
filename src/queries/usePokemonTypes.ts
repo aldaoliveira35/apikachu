@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPokemonTypes } from "../api-clients/pokemon-api-client";
-import { PokemonTypesResponse } from "./types";
+import { PokemonTypesResponse } from "../types/types";
 
 export function usePokemonTypes() {
   return useQuery({

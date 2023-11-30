@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getItems } from "../api-clients/pokemon-api-client";
-import { ItemsResponse, ItemDetailsResponse } from "./types";
+import type { ItemsResponse, ItemDetailsResponse } from "../types/types";
 
 const PAGE_SIZE = 24;
 

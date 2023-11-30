@@ -3,11 +3,11 @@ import {
   getPokemonDetails,
   getPokemonSpecies,
 } from "../api-clients/pokemon-api-client";
-import {
+import type {
   Pokemon,
   PokemonDetailsResponse,
   PokemonSpeciesResponse,
-} from "./types";
+} from "../types/types";
 
 export function usePokemonDetails(id: string) {
   return useQuery({
@@ -28,10 +28,6 @@ export function usePokemonDetails(id: string) {
         pokemonSpecies.flavor_text_entries
           .find(({ language }) => language.name === "en")
           ?.flavor_text.replaceAll(/[\f\n]/g, " ") || "";
-
-      pokemonDescription =
-        pokemonDescription.charAt(0).toUpperCase() +
-        pokemonDescription.slice(1).toLowerCase();
 
       return {
         id: pokemonDetails.id,
