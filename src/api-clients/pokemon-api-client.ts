@@ -35,13 +35,14 @@ export function getItems(signal: AbortSignal) {
 }
 
 async function request(endpointUrl: string, signal: AbortSignal) {
-  try {
-    const response = await fetch(`${API_BASE_URL}/${endpointUrl}`, {
-      method: "GET",
-      signal,
-    });
+  const response = await fetch(`${API_BASE_URL}/${endpointUrl}`, {
+    method: "GET",
+    signal,
+  });
+
+  if (response.ok) {
     return await response.json();
-  } catch (error) {
-    console.error(error);
   }
+
+  throw new Error();
 }

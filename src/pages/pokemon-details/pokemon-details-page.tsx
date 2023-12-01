@@ -6,13 +6,14 @@ import { PokemonDetails } from "../../components/PokemonDetails/PokemonDetails";
 import { ArrowBackIcon } from "../../components/Icons/ArrowBackIcon";
 import { ArrowForwardIcon } from "../../components/Icons/ArrowForwardIcon";
 import { EvolutionChain } from "../../components/PokemonDetails/EvolutionChain";
+import { NotFound } from "../../components/NotFound/NotFound";
 
 import classes from "./pokemon-details-page.module.css";
 import { usePokemonEvolutions } from "../../queries/usePokemonEvolutions";
 
 export function PokemonDetailsPage() {
   const { id = "" } = useParams<{ id: string }>();
-  const { data: pokemonDetails, isLoading } = usePokemonDetails(id);
+  const { data: pokemonDetails, isLoading, error } = usePokemonDetails(id);
   const { data: pokemonEvolutionChain = [] } = usePokemonEvolutions(id);
 
   const currentPokemon = parseInt(id);
@@ -49,6 +50,8 @@ export function PokemonDetailsPage() {
           <p className={classes.loadingParagraph}>Loading Pokémon...</p>
         </div>
       )}
+
+      {error && <NotFound />}
     </>
   );
 }
