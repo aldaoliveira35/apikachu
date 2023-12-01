@@ -19,7 +19,7 @@ async function listPokemon(
   search: string,
   type: string
 ) {
-  const sanitisedSearch = search.toLowerCase();
+  const sanitizedSearch = search.toLowerCase();
 
   let listPokemonUrls: string[] = [];
 
@@ -28,7 +28,7 @@ async function listPokemon(
     const { results }: PokemonListResponse = await getPokemon(signal);
 
     listPokemonUrls = results
-      .filter(({ name }) => name.toLowerCase().includes(sanitisedSearch))
+      .filter(({ name }) => name.toLowerCase().includes(sanitizedSearch))
       .slice(PAGE_SIZE * pageParam, PAGE_SIZE * pageParam + PAGE_SIZE)
       .map(({ url }) => url);
   } else {
@@ -40,7 +40,7 @@ async function listPokemon(
 
     listPokemonUrls = pokemon
       .filter(({ pokemon }) =>
-        pokemon.name.toLowerCase().includes(sanitisedSearch)
+        pokemon.name.toLowerCase().includes(sanitizedSearch)
       )
       .slice(PAGE_SIZE * pageParam, PAGE_SIZE * pageParam + PAGE_SIZE)
       .map(({ pokemon }) => pokemon.url);

@@ -29,7 +29,7 @@ export function usePokemonDetails(id: string) {
           .find(({ language }) => language.name === "en")
           ?.flavor_text.replaceAll(/[\f\n]/g, " ") || "";
 
-      return {
+      const pokemon: Pokemon = {
         id: pokemonDetails.id,
         name: pokemonDetails.name,
         description: pokemonDescription,
@@ -40,13 +40,16 @@ export function usePokemonDetails(id: string) {
         image:
           pokemonDetails.sprites.other["official-artwork"].front_default ||
           pokemonDetails.sprites.front_default,
+        oldSchoolImage: pokemonDetails.sprites.front_default,
         types: pokemonDetails.types.map(({ type }) => type.name),
         abilities: pokemonDetails.abilities.map(({ ability }) => ability.name),
         stats: pokemonDetails.stats.map(({ stat, base_stat }) => ({
           name: stat.name,
           value: base_stat,
         })),
-      } as Pokemon;
+      };
+
+      return pokemon;
     },
     staleTime: Infinity,
   });

@@ -9,12 +9,12 @@ async function listItems(
   pageParam: number,
   search: string
 ) {
-  const sanitisedSearch = search.toLowerCase();
+  const sanitizedSearch = search.toLowerCase();
 
   const { results }: ItemsResponse = await getItems(signal);
 
   return results
-    .filter((item) => item.name.toLowerCase().includes(sanitisedSearch))
+    .filter((item) => item.name.toLowerCase().includes(sanitizedSearch))
     .slice(PAGE_SIZE * pageParam, PAGE_SIZE * pageParam + PAGE_SIZE)
     .map(({ url }) => url);
 }
