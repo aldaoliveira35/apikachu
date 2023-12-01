@@ -11,6 +11,9 @@
 }
 
 .itemImageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50%;
   aspect-ratio: 1;
   margin: 20px auto;
