@@ -1,12 +1,12 @@
 import { Fragment } from "react";
 import { BaseStatBar } from "./BaseStatBar";
-import type { Pokemon } from "../../types/types";
+import type { PokemonResponse } from "../../types/types-vercel";
 import { getColorByType } from "../../utils/colorsByType";
 
 import classes from "./PokemonDetails.module.css";
 
 interface PokemonDetailsProps {
-  pokemon: Pokemon;
+  pokemon: PokemonResponse;
 }
 
 export function PokemonDetails({ pokemon }: PokemonDetailsProps) {

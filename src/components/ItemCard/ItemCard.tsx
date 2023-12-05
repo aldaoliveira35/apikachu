@@ -1,10 +1,10 @@
-import type { Item } from "../../types/types";
+import type { ItemsResponse } from "../../types/types-vercel";
 import { BrokenImageIcon } from "../Icons/BrokenImageIcon";
 
 import classes from "./ItemCard.module.css";
 
 interface ItemCardProps {
-  item: Item;
+  item: ItemsResponse;
 }
 
 export function ItemCard({ item }: ItemCardProps) {

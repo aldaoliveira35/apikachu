@@ -1,83 +1,23 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import {
-  getPokemon,
-  getPokemonTypeDetails,
-} from "../api-clients/pokemon-api-client";
-import type {
-  Pokemon,
-  PokemonListResponse,
-  PokemonDetailsResponse,
-  PokemonTypeDetailsResponse,
-} from "../types/types";
+import { getPokemon } from "../api-clients/pokemon-api-client-vercel";
+import type { PokemonListResponse } from "../types/types-vercel";
 
-const PAGE_SIZE = 20;
-
-async function listPokemon(
-  signal: AbortSignal,
-  pageParam: number,
-  search: string,
-  type: string
-) {
-  const sanitizedSearch = search.toLowerCase();
-
-  let listPokemonUrls: string[] = [];
-
-  if (!type) {
-    // Get all the Pokemon and filter by name.
-    const { results }: PokemonListResponse = await getPokemon(signal);
-
-    listPokemonUrls = results
-      .filter(({ name }) => name.toLowerCase().includes(sanitizedSearch))
-      .slice(PAGE_SIZE * pageParam, PAGE_SIZE * pageParam + PAGE_SIZE)
-      .map(({ url }) => url);
-  } else {
-    // Get all the Pokemon of a certain type and filter by name.
-    const { pokemon }: PokemonTypeDetailsResponse = await getPokemonTypeDetails(
-      signal,
-      type
-    );
-
-    listPokemonUrls = pokemon
-      .filter(({ pokemon }) =>
-        pokemon.name.toLowerCase().includes(sanitizedSearch)
-      )
-      .slice(PAGE_SIZE * pageParam, PAGE_SIZE * pageParam + PAGE_SIZE)
-      .map(({ pokemon }) => pokemon.url);
-  }
-
-  return listPokemonUrls;
-}
+const PAGE_SIZE = 30;
 
 export function usePokemon(search: string, type: string) {
   return useInfiniteQuery({
     queryKey: ["pokemon", search, type],
     queryFn: async ({ signal, pageParam }) => {
-      const pokemonUrls = await listPokemon(signal, pageParam, search, type);
-
-      const pokemonDetails: PokemonDetailsResponse[] = await Promise.all(
-        pokemonUrls.map((url) =>
-          fetch(url, { signal }).then((response) => response.json())
-        )
+      const pokemon: PokemonListResponse = await getPokemon(
+        signal,
+        type,
+        search,
+        pageParam,
+        PAGE_SIZE
       );
 
-      return pokemonDetails.map<Pokemon>((pokemon) => ({
-        id: pokemon.id,
-        name: pokemon.name,
-        description: "",
-        height: pokemon.height,
-        weight: pokemon.weight,
-        image:
-          pokemon.sprites.other["official-artwork"].front_default ||
-          pokemon.sprites.front_default,
-        oldSchoolImage: pokemon.sprites.front_default,
-        types: pokemon.types.map(({ type }) => type.name),
-        abilities: pokemon.abilities.map(({ ability }) => ability.name),
-        stats: pokemon.stats.map(({ stat, base_stat }) => ({
-          name: stat.name,
-          value: base_stat,
-        })),
-      }));
+      return pokemon;
     },
     staleTime: Infinity,
     initialPageParam: 0,

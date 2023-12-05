@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
-import type { Pokemon } from "../../types/types";
+import type { PokemonResponse } from "../../types/types-vercel";
 import { getColorByType } from "../../utils/colorsByType";
 import classes from "./PokemonCard.module.css";
 import { BrokenImageIcon } from "../Icons/BrokenImageIcon";
 
 interface PokemonCardProps {
-  pokemon: Pokemon;
+  pokemon: PokemonResponse;
   showOldSchoolImage: boolean;
 }
 
