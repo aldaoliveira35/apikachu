@@ -35,7 +35,7 @@ export function getItems(
     page: page.toString(),
     pageSize: pageSize.toString(),
   });
-  return request(`item?${searchParams.toString()}`, signal);
+  return request(`items?${searchParams.toString()}`, signal);
 }
 
 async function request(endpointURL: string, signal: AbortSignal) {
